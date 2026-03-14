@@ -29,24 +29,45 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 16px;
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
+    position: relative;
 }
+
+.brand-corner {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 10;
+}
+
+.brand-corner-image {
+    width: 180px;
+    height: auto;
+    display: block;
+}
+
 
 .game-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    width: min(95vw, 800px);
 }
 
 .score-panel {
+  
     display: flex;
     justify-content: space-between;  /* Space between score and button */
     align-items: center;
-    width: 800px;
+    width: 100%;
     padding: 10px;
-    background-color: #fff;
+    background-color:#2E9DF7;;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -58,7 +79,7 @@ body {
 }
 
 #game-container {
-    width: 800px;
+    width: 100%;
     height: 600px;
     background-color: #e6f7ff;
     border: 2px solid #333;
@@ -79,7 +100,7 @@ body {
 }
 
 #start-btn:hover {
-    background-color: #45a049;
+    background-color: #FFC907;
 }
 
 .score {
@@ -118,10 +139,23 @@ body {
     text-align: center;
 }
 
+.intro-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
 .game-tagline {
     color: #666;
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.link-info {
+    color: #666;
+    margin: 0;
     text-align: center;
 }
 
@@ -141,5 +175,60 @@ body {
     
     #game-container {
         height: 70vh;
+    }
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 96px 10px 10px;
+    }
+
+    .brand-corner {
+        top: 10px;
+        left: 10px;
+        padding: 10px;
+    }
+
+    .brand-corner-image {
+        width: 140px;
+    }
+
+    .brand-corner-text {
+        font-size: 16px;
+    }
+
+    .game-title {
+        font-size: 32px;
+    }
+
+    .game-tagline {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .score-panel {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .score,
+    .timer {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    #start-btn {
+        width: 100%;
+    }
+
+    #game-container {
+        height: 58vh;
+    }
+}
+
+@media (max-height: 700px) and (orientation: landscape) {
+    #game-container {
+        height: 56vh;
     }
 }
