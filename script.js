@@ -2,6 +2,31 @@
 let gameRunning = false; // Keeps track of whether game is active or not
 let dropMaker; // Will store our timer that creates drops regularly
 
+let timer = null;
+let score = 0;
+let timeLeft = 30; 
+
+const timeDisplay = document.getElementById("time");
+const scoreDisplay = document.getElementById("score");
+
+function updateScoreDisplay() {
+  scoreDisplay.textContent = String(score);
+}
+function updateTimeDisplay() {
+  timeDisplay.textContent = String(timeLeft);
+}
+
+function endGame() {
+  gameRunning = false;
+  clearInterval(timer);
+  clearInterval(dropMaker);
+}
+
+updateScoreDisplay();
+updateTimeDisplay();
+
+
+
 // Wait for button click to start the game
 document.getElementById("start-btn").addEventListener("click", startGame);
 
@@ -13,12 +38,33 @@ function startGame() {
 
   // Create new drops every second (1000 milliseconds)
   dropMaker = setInterval(createDrop, 1000);
+  timer = setInterval(() => {
+    if (timeLeft > 0) {
+      timeLeft -= 1;
+      updateTimeDisplay();
+    } else {
+      timeLeft = 0;
+      updateTimeDisplay();
+      endGame();
+    }
+  }, 1000);
+
+  score = 0;
+  timeLeft = 30;
+  updateTimeDisplay();
+  updateScoreDisplay();
 }
 
 function createDrop() {
   // Create a new div element that will be our water drop
   const drop = document.createElement("div");
   drop.className = "water-drop";
+
+  drop.addEventListener("click", () => {
+    score += 1;
+    updateScoreDisplay();
+    drop.remove();
+  });
 
   // Make drops different sizes for visual variety
   const initialSize = 60;
