@@ -65,8 +65,8 @@ function startGame() {
   gameRunning = true;
   messageDisplay.textContent = "";
 
-  // Create new drops every second (1000 milliseconds)
-  dropMaker = setInterval(createDrop, 1000);
+  // Create new drops every second (600 milliseconds)
+  dropMaker = setInterval(createDrop, 600);
   timer = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft -= 1;
